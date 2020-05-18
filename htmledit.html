@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js'></script>
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>HTML EDITOR | LIVE</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    
+    <style>body, html {
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        margin:0; 
+        padding:0;
+        height:100%; 
+        width:100%; 
+      }
+      #editor {
+    height: 100%;
+    width:45%;
+    display:inline-block;
+    border-radius: 2%;
+    font-size: 1pt;
+}
+
+#container {
+	height:100%;
+	width:auto;
+  left: 5%;
+  white-space : nowrap; 
+  overflow : hidden;
+  position:relative;
+
+}
+
+ol, li {
+    text-align:left;
+    color:rgb(22, 22, 22);
+    text-indent: -20px; /* key property */
+    margin-left: 30px; /* key property */
+    
+}
+li { margin-bottom: 10px; }
+
+  /* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  width: 90%;
+  left: 5%;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}  
+  
+ol.styled-ol li:last-child {
+    border-bottom:none;
+  }
+  
+ol.styled-ol {
+    list-style-type: none;
+    list-style-type: decimal; /*IE 7- hack*/
+     
+    margin: 0;
+    margin-left: 0em;
+    padding: 0;
+     
+    counter-reset: li-counter;
+}
+ol.styled-ol li{
+    border-bottom:1px solid #E1E6EB;
+    padding:10px 0 12px 0;
+}
+ol.styled-ol li:before {
+    font-family: 'Open Sans';
+    font-size: 18px;
+    font-weight: 400;
+    color: #acb4be;
+    margin:0 25px 0 0;
+ 
+    content: counter(li-counter);
+    counter-increment: li-counter;
+    
+}
+
+#iframe {
+	height:100%;
+	display:inline-block;
+	width:45%;
+  border: double 4px transparent;
+  border-radius: 2%;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left,#326a9b , #3f8df8);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  width: 90%;
+  left: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-bottom: 2%;
+  background-color: #fff;
+  /* background-image: linear-gradient(#326a9b , #3f8df8); */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+/* disable tag matching */
+.ace_editor .ace_marker-layer .ace_bracket { display: none }
+      
+      </style>
+</head>
+
+<body onload='ready()'>
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="mosh-preloader"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area clearfix">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <!-- Menu Area Start -->
+                <div class="col-12 h-100">
+                    <div class="menu_area h-100">
+                        <nav class="navbar h-100 navbar-expand-lg align-items-center">
+                            <!-- Logo -->
+                          <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt="logo"></a>  
+                            <!-- Menu Area -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                            <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
+                                <ul class="navbar-nav animated" id="nav">
+                                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                </ul>
+                                <!-- Search Form Area Start -->
+                                <div class="search-form-area animated">
+                                    <form action="#" method="post">
+                                        <input type="search" name="search" id="search" placeholder="Type keywords &amp; hit enter">
+                                        <button type="submit" class="d-none"><img src="img/core-img/search-icon.png" alt="Search"></button>
+                                    </form>
+                                </div>
+                                <!-- Search btn -->
+                                <div class="search-button">
+                                    <a href="#" id="search-btn"><img src="img/core-img/search-icon.png" alt="Search"></a>
+                                </div>
+                                <!-- Login/Register btn -->
+                                <div class="login-register-btn">
+                                    <a href="login.html">Login</a>
+                                 <a style="color: white;">/</a>   <a href="sign-up.html"> Sign Up</a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="mosh-breadcumb-area" style="background-image: url(img/core-img/breadcumb.png);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="bradcumbContent">
+                        <h2 >HTML EDITOR | LIVE</h2>
+
+                        <h5 style="margin-left:10px;">
+                            <a href="" style="color: rgb(253, 253, 253);" class="typewrite" data-period="2000" data-type='[ "Track Your Learning Through Test.", "Get Refrence To All The Resources At On Place.","Do Quick Revision.","Give Tests.", "Get To Your Goals Faster." ]'>
+                              <span class="wrap"></span>
+                            </a>
+                          </h5> 
+                           <nav aria-label="breadcrumb">
+                            <ol style="margin-left:10px;" class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">HTML</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">CSS</li>
+                                <li class="breadcrumb-item active" aria-current="page">JavaScript</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+      <div class="container">
+        <h4 style="margin-top:2%;color:rgb(22, 22, 22)"><b>Instructions</b></h4>
+        <ol class="styled-ol">
+          <li>Type and Edit your html file in the editor in the left of the website. You can write CSS inside 'style' tags and JS inside 'script' tags</li>
+          <li>You will get a preview of your code inside the highlighted frame to the right of the webpage</li>
+          <li>Test your self and Enjoy!</li>
+        </ol> 
+      </div>
+    </div> 
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        It is advised that you use a computer while using this editor.
+      </div> 
+
+    <div id='container'>
+
+      <div id="editor">
+      </div>
+
+      <iframe id='iframe' frameBorder="0">
+      </iframe>
+    </div>
+
+    <script>
+      function update()
+{
+var idoc = document.getElementById('iframe').contentWindow.document;
+
+idoc.open();
+idoc.write(editor.getValue());
+idoc.close();
+}
+
+function setupEditor()
+{
+window.editor = ace.edit("editor");
+editor.setTheme("ace/theme/monokai");
+editor.getSession().setMode("ace/mode/html");
+editor.setValue(`<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+</body>
+
+</html>`,1); //1 = moves cursor to end
+
+editor.getSession().on('change', function() {
+  update();
+});
+
+editor.focus();
+
+
+editor.setOptions({
+  fontSize: "13pt",
+  showLineNumbers: false,
+  showGutter: false,
+  vScrollBarAlwaysVisible:true,
+  enableBasicAutocompletion: false, enableLiveAutocompletion: false
+});
+
+editor.setShowPrintMargin(false);
+editor.setBehavioursEnabled(false);
+}
+
+setupEditor();
+update();
+
+</script>
+
+
+
+
+
+   <!-- ***** Footer Area Start ***** -->
+   <footer class="footer-area clearfix" style="border-top: 5%;">
+    <!-- Top Fotter Area -->
+    <div class="top-footer-area section_padding_100_0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-footer-widget mb-100">
+                        <a href="#" class="mb-50 d-block"><img src="img/core-img/logo.png" alt=""></a>
+                        <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellent esque sit amet tellus blandit. Etiam nec odio vestibul.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-footer-widget mb-100">
+                        <h5>Fast links</h5>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="services.html">Services &amp; Features</a></li>
+                            <li><a href="#">Accordions and tabs</a></li>
+                            <li><a href="#">Menu ideas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-footer-widget mb-100">
+                        <h5>Blog</h5>
+                        <div class="footer-single--blog-post">
+                            <a href="blog.html" class="blog-post-date">
+                                <p>23 September, 2017</p>
+                            </a>
+                            <a href="blog.html" class="blog-post-title">
+                                <h6>To Do | Tracker</h6>
+                            </a>
+                        </div>
+                        <div class="footer-single--blog-post">
+                            <a href="#blog.html class="blog-post-date">
+                                <p>22 September, 2017</p>
+                            </a>
+                            <a href="blog.html" class="blog-post-title">
+                                <h6>Designin on grid. A few rules. </h6>
+                            </a>
+                        </div>
+                        <div class="footer-single--blog-post">
+                            <a href="blog.html" class="blog-post-date">
+                                <p>20 September, 2017</p>
+                            </a>
+                            <a href="blog.html" class="blog-post-title">
+                                <h6>2017 World Congress</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-footer-widget mb-100">
+                        <h5>Contact Info</h5>
+                        <div class="footer-single-contact-info d-flex">
+                            <div class="contact-icon">
+                                <img src="img/core-img/map.png" alt="">
+                            </div>
+                            <p>Chaukhandi, Tilak Nagar, New Delhi-110018 India </p>
+                        </div>
+                        <div class="footer-single-contact-info d-flex">
+                            <div class="contact-icon">
+                                <img src="img/core-img/call.png" alt="">
+                            </div>
+                            <p>Main: 203-808-8613 <br> Office: 203-808-8648</p>
+                        </div>
+                        <div class="footer-single-contact-info d-flex">
+                            <div class="contact-icon">
+                                <img src="img/core-img/message.png" alt="">
+                            </div>
+                            <p>office@yourbusiness.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fotter Bottom Area -->
+    <div class="footer-bottom-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <div class="footer-bottom-content h-100 d-md-flex justify-content-between align-items-center">
+                        <div class="copyright-text">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                        </div>
+                        <div class="footer-social-info">
+                            <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ***** Footer Area End ***** -->
+<!-- ace cdn -->
+
+<!-- jQuery-2.2.4 js -->
+<script src="js/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="js/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="js/plugins.js"></script>
+<!-- Active js -->
+<script src="js/active.js"></script>
+
+<script>// INSERT JS HERE
+
+
+    // SOCIAL PANEL JS
+    const floating_btn = document.querySelector('.floating-btn');
+    const close_btn = document.querySelector('.close-btn');
+    const social_panel_container = document.querySelector('.social-panel-container');
+    
+    floating_btn.addEventListener('click', () => {
+        social_panel_container.classList.toggle('visible')
+    });
+    
+    close_btn.addEventListener('click', () => {
+        social_panel_container.classList.remove('visible')
+    });</script>
+</body>
+
+</html>
