@@ -271,11 +271,14 @@ editor.getSession().setMode("ace/mode/html");
 editor.setValue(`<!DOCTYPE html>
 <html>
 <head>
+<title>Page Title</title>
 </head>
-
 <body>
-</body>
 
+<h1>Test Me</h1>
+<p>You can edit anything here!</p>
+
+</body>
 </html>`,1); //1 = moves cursor to end
 
 editor.getSession().on('change', function() {
