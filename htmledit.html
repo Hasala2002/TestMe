@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js'></script>
+    <script src="https://github.com/Hasala2002/FileSaver.js/blob/master/src/FileSaver.js"></script>
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
@@ -38,6 +39,29 @@
     border-radius: 2%;
     font-size: 1pt;
 }
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+} 
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+.button5 {background-color: #555555;} /* Black */
+
 
 #container {
 	height:100%;
@@ -114,6 +138,14 @@ ol.styled-ol li:before {
     content: counter(li-counter);
     counter-increment: li-counter;
     
+}
+
+input[type=text] {
+  margin-left: 5%;
+  width: 20%;
+  display: inline-block;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
 
 #iframe {
@@ -244,7 +276,9 @@ ol.styled-ol li:before {
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         It is advised that you use a computer while using this editor.
       </div> 
-
+      <input type="text" placeholder="filename..."></input>
+      <button onclick="save()" class="button" style="margin-left: -0.01%;">Save</button> 
+      <button onclick="reset()" class="button button3" style="margin-left: -0.01%;">Reset</button>
     <div id='container'>
 
       <div id="editor">
@@ -291,6 +325,7 @@ editor.focus();
 
 editor.setOptions({
   fontSize: "13pt",
+//   fontFamily: "Consolas",
   showLineNumbers: true,
   showGutter: true,
   vScrollBarAlwaysVisible:true,
@@ -304,7 +339,33 @@ editor.setBehavioursEnabled(false);
 setupEditor();
 update();
 
+function save(){
+    console.log("hello")
+    var file = new File([editor.getValue()], "index.html", {type: "text/html;charset=utf-8"});
+    saveAs(file);
+}
+function reset(){
+    var txt;
+  if (confirm("Are you sure you want to reset?")) {
+    editor.setValue(`<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Test Me</h1>
+<p>You can edit anything here!</p>
+
+</body>
+</html>`,1);
+  } else {
+  }
+    
+}
+
 </script>
+
 
 
 
@@ -427,6 +488,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="js/plugins.js"></script>
 <!-- Active js -->
 <script src="js/active.js"></script>
+<script src="js/FileSaver.js"></script>
 
 <script>// INSERT JS HERE
 
