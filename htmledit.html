@@ -118,8 +118,8 @@
         It is advised that you use a computer while using this editor.
       </div> 
       <input type="text" placeholder="Enter your filename..." id="fileName"></input>
-      <button onclick="save()" class="button" style="margin-left: -0.01%;">Save</button> 
-      <button onclick="reset()" class="button button3" style="margin-left: -0.01%;">Reset</button>  
+      <button onclick="save()" class="button" style="margin-left: -0.01%;" >Save</button> 
+      <button id="btnChangeBg" class="button button3" style="margin-left: -0.01%;">Reset</button>  
       <select class="custom-select" onchange="theme()" id="themeSelect">
           <option value="0">Select Theme:</option>
           <option value="1">Monokai</option>
@@ -260,7 +260,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- HTML Editor js -->
 <script src="js/FileSaver.js"></script>
 <script src="js/htmledit.js"></script>
-
 <script>// INSERT JS HERE
 
 
