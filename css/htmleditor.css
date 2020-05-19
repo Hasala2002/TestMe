@@ -1,0 +1,180 @@
+body, html {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin:0; 
+    padding:0;
+    height:100%; 
+    width:100%; 
+  }
+  #editor {
+height: 100%;
+width:45%;
+display:inline-block;
+border-radius: 2%;
+font-size: 1pt;
+}
+
+
+.button {
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 4px;
+margin-left: 5%;
+margin-top: 2%;
+margin-bottom: 1%;
+} 
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+.button5 {background-color: #555555;} /* Black */
+
+
+#container {
+height:100%;
+width:auto;
+left: 5%;
+white-space : nowrap; 
+overflow : hidden;
+position:relative;
+margin-bottom: 2%;
+
+}
+
+ol, li {
+text-align:left;
+color:rgb(22, 22, 22);
+text-indent: -20px; /* key property */
+margin-left: 30px; /* key property */
+
+}
+li { margin-bottom: 10px; }
+
+/* The alert message box */
+.alert {
+padding: 20px;
+background-color: #f44336; /* Red */
+color: white;
+margin-bottom: 15px;
+width: 90%;
+left: 5%;
+}
+
+/* The close button */
+.closebtn {
+margin-left: 15px;
+color: white;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+color: black;
+}  
+
+ol.styled-ol li:last-child {
+border-bottom:none;
+}
+
+ol.styled-ol {
+list-style-type: none;
+list-style-type: decimal; /*IE 7- hack*/
+ 
+margin: 0;
+margin-left: 0em;
+padding: 0;
+ 
+counter-reset: li-counter;
+}
+ol.styled-ol li{
+border-bottom:1px solid #E1E6EB;
+padding:10px 0 12px 0;
+}
+ol.styled-ol li:before {
+font-family: 'Open Sans';
+font-size: 18px;
+font-weight: 400;
+color: #acb4be;
+margin:0 25px 0 0;
+
+content: counter(li-counter);
+counter-increment: li-counter;
+
+}
+
+input[type=text] {
+margin-left: 5%;
+width: 20%;
+display: inline-block;
+padding: 12px 20px;
+box-sizing: border-box;
+}
+
+#iframe {
+height:100%;
+display:inline-block;
+width:45%;
+border: double 4px transparent;
+border-radius: 2%;
+background-image: linear-gradient(white, white), radial-gradient(circle at top left,#326a9b , #3f8df8);
+background-origin: border-box;
+background-clip: content-box, border-box;
+}
+.card {
+/* Add shadows to create the "card" effect */
+width: 90%;
+left: 5%;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+margin-bottom: 2%;
+background-color: #fff;
+/* background-image: linear-gradient(#326a9b , #3f8df8); */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+padding: 2px 16px;
+}
+
+/* disable tag matching */
+.ace_editor .ace_marker-layer .ace_bracket { display: none }
+
+.custom-select {
+ display: inline-block;
+  height: 48px;
+    width: 300px;
+  padding: 12px;
+  border: 0 !important;
+  background-color: #25499F;
+  color: white;
+  /* needed */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* SVG background image */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: .6em;
+    background-position: calc(100% - 1.3em) center;
+    background-repeat: no-repeat;
+}
+select::-ms-expand {
+    display: none;
+}
