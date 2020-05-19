@@ -1,3 +1,4 @@
+var defcode="";
 function update()
 {
 var idoc = document.getElementById('iframe').contentWindow.document;
@@ -24,7 +25,7 @@ editor.setValue(`<!DOCTYPE html>
 
 </body>
 </html>`,1); //1 = moves cursor to end
-
+defcode = editor.getValue();
 editor.getSession().on('change', function() {
   update();
 });
@@ -174,6 +175,8 @@ const Confirm = {
 
 
 document.querySelector('#btnChangeBg').addEventListener('click', () => {
+  var curcode = editor.getValue();
+  if (curcode !== defcode){
   Confirm.open({
     title: 'Reset Editor',
     message: 'Are you sure you want to reset the editor?',
@@ -181,4 +184,5 @@ document.querySelector('#btnChangeBg').addEventListener('click', () => {
       reset();
     }
   })
+}
 });

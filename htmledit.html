@@ -118,20 +118,8 @@
         It is advised that you use a computer while using this editor.
       </div> 
       <input type="text" placeholder="Enter your filename..." id="fileName"></input>
-      <button onclick="save()" class="button" style="margin-left: -0.01%;" >Save</button> 
-      <button id="btnChangeBg" class="button button3" style="margin-left: -0.01%;">Reset</button>  
-      <script>
-        document.querySelector('#btnChangeBg').addEventListener('click', () => {
-      Confirm.open({
-        title: 'Reset Editor',
-        message: 'Are you sure you want to reset the editor?',
-        onok: () => {
-          reset();
-        }
-      })
-    });
-    </script>
-    
+      <button onclick="save()" class="button save" style="margin-left: -0.01%;" data-tooltip="Type in a filename and save your work to an html file"><img src="img/core-img/save.png" width="35px"></button> 
+      <button id="btnChangeBg" class="button button3" style="margin-left: -0.01%;" data-tooltip="Reset the editor back to its default code"><img src="img/core-img/reset.png" width="35px"></button>  
       <select class="custom-select" onchange="theme()" id="themeSelect">
           <option value="0">Select Theme:</option>
           <option value="1">Monokai</option>
